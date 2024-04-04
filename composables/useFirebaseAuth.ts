@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, type Auth, type User } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail ,type Auth, type User } from "firebase/auth";
 
 export default function() {
     const { $auth} = useNuxtApp();
@@ -38,9 +38,23 @@ export default function() {
         return false;
     }
 
+    const passwordReset = async (email: string) : Promise<boolean> => {
+        try {
+            await sendPasswordResetEmail($auth as Auth, email);
+            return true;
+        } catch (error : unknown) {
+            if (error instanceof Error) {
+                console.error(error.message);
+                alert(error.message);
+            }
+            return false;
+        }
+    }
+
     return {
         user,
         registerUser,
-        loginUser
+        loginUser,
+        passwordReset
     }
 }
