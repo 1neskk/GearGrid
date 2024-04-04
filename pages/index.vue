@@ -44,6 +44,17 @@
 </template>
 
 <script lang="ts" setup>
+import { useHead } from 'nuxt/app';
+
+useHead({
+  title: 'GearGrid',
+  meta: [
+    {
+      name: 'description',
+      content: 'Browse our wide selection of products and find the perfect items for your needs.'
+    }
+  ]
+});
 </script>
 
 <style lang="css" scoped>
