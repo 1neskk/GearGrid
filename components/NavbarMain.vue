@@ -1,8 +1,8 @@
 <template>
-    <nav class="bg-black-500 border-gray-200">
+    <nav class="navbar bg-black-500 border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
-            <a class="text-white font-bold text-lg" href="/">GearGrid</a>
+            <a class="text-white font-semibold text-xl" href="/">GearGrid</a>
         <div class="flex md:order-2">
             <div class="relative hidden md:block">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -30,3 +30,12 @@
         </div>
     </nav>
 </template>
+
+<style lang="css">
+.navbar {
+    font-weight: 300;
+    font-family: "Roboto", sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+</style>
