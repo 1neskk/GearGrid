@@ -30,7 +30,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useHead } from 'nuxt/app';
 import { useRouter } from 'vue-router';
 const { user } = useFirebaseAuth();
 
@@ -40,13 +39,8 @@ if (!user.value) {
     router.push('/login');
 }
 
-useHead({
-    title: 'Mice',
-    meta: [
-        {
-            name: 'description',
-            content: 'Browse our selection of high-end computer mice.'
-        }
-    ]
+useSeoMeta({
+  title: "Mice",
+  description: "Browse our selection of high-end computer mice.",
 });
 </script>

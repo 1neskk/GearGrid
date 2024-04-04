@@ -45,18 +45,12 @@
 </template>
 
 <script lang="ts" setup>
-import { useHead } from 'nuxt/app';
 import { reactive } from 'vue';
 const {registerUser} = useFirebaseAuth();
 
-useHead({
-    title: 'Register',
-    meta: [
-        {
-            name: 'description',
-            content: 'Register to access the GearGrid website.'
-        }
-    ]
+useSeoMeta({
+  title: "Sign up",
+  description: "Sign up to access the GearGrid website.",
 });
 
 const creds = reactive({

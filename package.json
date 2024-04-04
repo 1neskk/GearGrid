@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@morev/vue-transitions": "^3.0.2",
     "@vee-validate/nuxt": "^4.12.6",
     "dotenv": "^16.4.5",
     "firebase": "^10.10.0",
@@ -18,7 +19,9 @@
     "tailwind-variants": "^0.2.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "vuefire": "^3.1.23"
+    "vue-sonner": "^1.1.2",
+    "vuefire": "^3.1.23",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
