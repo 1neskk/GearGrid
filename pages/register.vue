@@ -1,66 +1,63 @@
 <template>
-    <main class="">
+    <main>
         <NavbarMain />
-        <div class="form-container">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                        Email
-                    </label>
-                    <input
-                        v-model="creds.email"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="username"
-                        type="email"
-                        placeholder="Enter your email address"
-                    />
+        <div class="flex h-screen items-center justify-center">
+            <div class="w-full max-w-[330px] px-5">
+            <h1 class="text-2xl font-bold tracking-tight lg:text-3xl">Sign Up</h1>
+            <p class="mt-1 text-muted-foreground">Enter your email & password to register.</p>
+  
+            <form class="mt-10" @submit="submit">
+                <fieldset class="grid gap-5">
+                <div>
+                    <UiVeeInput v-model="creds.email" label="Email" type="email" name="email" placeholder="john@example.com" />
                 </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Password
-                    </label>
-                    <input
-                        v-model="creds.password"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        id="password"
-                        type="password"
-                        placeholder="Enter your password"
-                    />
+                <div>
+                    <UiVeeInput v-model="creds.password" label="Password" type="password" name="password" />
                 </div>
-                <div class="flex items-center justify-between gap-14">
-                    <button
-                        @click="handleRegister"
-                        class="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:shadow-outline"
-                        type="button"
-                    >
-                        Sign Up
-                    </button>
-                    <a class="inline-block align-baseline font-bold text-sm text-violet-500 hover:text-violet-800" href="/login">
-                        Already have an account?
-                    </a>
+                <div>
+                    <UiButton @click="handleRegister"  class="w-full" type="submit" text="Sign Up" />
                 </div>
+                </fieldset>
             </form>
+            <p class="mt-4 text-sm text-muted-foreground">
+                Already have an account?
+                <NuxtLink class="font-semibold text-primary underline-offset-2 hover:underline" to="/login"
+                >Sign In</NuxtLink
+                >
+            </p>
+            </div>
         </div>
     </main>
-</template>
+  </template>
 
 <script lang="ts" setup>
 import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
 const {registerUser} = useFirebaseAuth();
 
 useSeoMeta({
-  title: "Sign up",
-  description: "Sign up to access the GearGrid website.",
+  title: "Register",
+  description: "Register to access the GearGrid website.",
 });
 
+const router = useRouter();
 const creds = reactive({
     email: '',
     password: ''
 });
 
 const handleRegister = async () => {
-    await registerUser(creds.email, creds.password);
-    alert('Account registered successfully! Now you can login.');
+  try {
+      await registerUser(creds.email, creds.password);
+      router.push('/products/mice');
+  } catch (error) {
+      console.error(error);
+  }
+};
+
+const submit = (event: Event) => {
+  event.preventDefault();
+  handleRegister();
 };
 </script>
 

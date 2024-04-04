@@ -3,7 +3,7 @@
       <NavbarMain />
       <div class="flex h-screen items-center justify-center">
           <div class="w-full max-w-[330px] px-5">
-          <h1 class="text-2xl font-bold tracking-tight lg:text-3xl">Log in</h1>
+          <h1 class="text-2xl font-bold tracking-tight lg:text-3xl">Sign in</h1>
           <p class="mt-1 text-muted-foreground">Enter your email & password to log in.</p>
 
           <form class="mt-10" @submit="submit">
