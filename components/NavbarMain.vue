@@ -35,7 +35,5 @@
 .navbar {
     font-weight: 300;
     font-family: "Roboto", sans-serif;
-    background-color: #000;
-    color: #fff;
 }
 </style>
