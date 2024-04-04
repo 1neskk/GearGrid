@@ -3,8 +3,8 @@
         <NavbarMain class="text-white bg-black"/>
         <div class="form-container">
             <div class="max-w-3xl mx-auto px-4">
-                <h1 class="text-black text-4xl font-bold mb-6">Welcome to <span class="glow-text md:hover:underline underline-offset-8">GearGrid</span></h1>
-                <p class=" text-black text-lg mb-8">An eCommerce specialized in selling high-end computer peripherals.</p>
+                <AnimatedHeader class="pl-0 pb-0" text="Welcome to GearGrid" />
+                <AnimatedParagraph class="paragraph pl-0 pb-8" text="An eCommerce specialized in selling high-end computer peripherals." />
                 <UiAlert class="text-black rounded-2xl bg-yellow-300 border-b-0 border-t-0 border-r-0 border-l-0 border-yellow-500"
                 title="New to GearGrid?" description="Only logged in users can access our wide selection of products."
                 variant="default"
@@ -22,12 +22,10 @@
 </template>
 
 <script lang="ts" setup>
-
 useSeoMeta({
   title: "GearGrid",
   description: "Browse our wide selection of products and find the perfect items for your needs.",
 });
-
 
 </script>
 
@@ -40,17 +38,10 @@ useSeoMeta({
     height: 100vh;
 }
 
-.glow-text {
-    font-size: 2.2rem;
-    color: #fff;
-    text-shadow: 0 0 10px rgb(171, 69, 255), 0 0 20px rgb(171, 69, 255), 0 0 30px rgb(171, 69, 255), 0 0 40px rgb(171, 69, 255), 0 0 50px rgb(171, 69, 255), 0 0 60px rgb(171, 69, 255), 0 0 70px rgb(171, 69, 255);
-    animation: animate 3s linear infinite;
+.paragraph {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #000;;
 }
-.gradient-text {
-  font-size: 2.25rem;
-  background: radial-gradient(94.18% 34.18% at 81.16% 87.69%, #e5defa .89%, #d0bef5 17.23%, #bd9df0 42.04%, #a47deb 55.12%, #815ce6 71.54%, #5d33cf 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+
 </style>
