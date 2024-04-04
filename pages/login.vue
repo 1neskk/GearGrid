@@ -20,7 +20,7 @@
               </fieldset>
           </form>
           <p class="mt-8 text-sm">
-              <NuxtLink class="font-semibold text-primary underline-offset-2 hover:underline" to="#"
+              <NuxtLink class="font-semibold text-primary underline-offset-2 hover:underline" to="/recovery"
               >Forgot password?</NuxtLink
               >
           </p>
@@ -55,7 +55,10 @@ const router = useRouter();
 const handleLogin = async () => {
   try {
       await loginUser(creds.email, creds.password);
-      router.push('/products/mice');
+      useSonner('Success', {
+        description: 'Logged in successfully.',
+      });
+      router.push('/mice');
   } catch (error) {
       console.error(error);
   }

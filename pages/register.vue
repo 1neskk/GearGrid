@@ -49,7 +49,10 @@ const creds = reactive({
 const handleRegister = async () => {
   try {
       await registerUser(creds.email, creds.password);
-      router.push('/products/mice');
+      useSonner('Success', {
+        description: 'Account created successfully.',
+      })
+      router.push('/mice');
   } catch (error) {
       console.error(error);
   }
