@@ -6,7 +6,7 @@
                 <h1 class="text-black text-4xl font-bold mb-6">Welcome to <span class="glow-text md:hover:underline underline-offset-8">GearGrid</span></h1>
                 <p class=" text-black text-lg mb-8">An eCommerce specialized in selling high-end computer peripherals.</p>
                 <UiAlert class="text-black rounded-2xl bg-yellow-300 border-b-0 border-t-0 border-r-0 border-l-0 border-yellow-500"
-                title="New to GearGrid?" description="Create an account to access our wide selection of products."
+                title="New to GearGrid?" description="Only logged in users can access our wide selection of products."
                 variant="default"
                 icon="lucide:triangle-alert"
                 />
