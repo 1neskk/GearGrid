@@ -27,7 +27,7 @@ export default {
         const tl = gsap.timeline({ defaults: { duration: 1, ease: "power4.out" } });
 
         tl.to(paragraph, { opacity: 1 })
-            .to(words, { opacity: 1, x: 0, stagger: 0, delay: 0 }, "-=0.8");
+            .to(words, { opacity: 1, x: 0, stagger: 0, delay: 0.4 }, "-=0.8");
     },
 };
 </script>

@@ -1,9 +1,19 @@
 <template>
-  <div>
+  
+  <client-only>
+    <LazyHero />
+  </client-only>
+
+  <NuxtLayout>
     <NuxtPage />
+  </NuxtLayout>
+
+  <client-only>
     <UiVueSonner />
-  </div>
+  </client-only>
+  
 </template>
 
 <script lang="ts">
+
 </script>
