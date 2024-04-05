@@ -9,7 +9,7 @@ export default `
     uniform float iPortfolioScrollPercentage;
 
     // Configuration
-    #define NOISE_STRENGTH 0.08
+    #define NOISE_STRENGTH 0.03
     #define SPECULAR_STRENGTH 0.17
     #define ANIMATION_SPEED 0.6
     #define DEPTH 60.
