@@ -64,7 +64,7 @@ const submit = handleSubmit(async (values) => {
     useSonner.success('Success', {
       description: 'Logged in successfully.',
     })
-    router.push('/');
+    router.push('/mice');
   }
   else
   {
