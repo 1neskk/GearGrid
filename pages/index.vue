@@ -1,12 +1,12 @@
 <template>
     <section class="page">
-        <main class="bg-gradient-to-b from-purple-600 to-bg-slate-950">
+        <main>
             <NavbarMain class="text-white bg-black"/>
             <div class="form-container">
                 <div class="max-w-3xl mx-auto px-4">
                     <AnimatedHeader class="pl-0 pb-0" text="Welcome to GearGrid" />
                     <AnimatedParagraph class="text-white paragraph pl-0 pb-8" text="An eCommerce specialized in selling high-end computer peripherals." />
-                    <UiAlert class="text-white rounded-2xl bg-purple-700 border-2 border-white"
+                    <UiAlert class="text-white rounded-2xl bg-black border-1"
                     title="New to GearGrid?" description="Only logged in users can access our wide selection of products."
                     variant="default"
                     icon="lucide:triangle-alert"
@@ -24,17 +24,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowSize } from '@vueuse/core';
-
 useSeoMeta({
   title: "GearGrid",
   description: "Browse our wide selection of products and find the perfect items for your needs.",
   keywords: "ecommerce, computer peripherals, high-end, GearGrid",
 });
-
-const portfolioScrollPercentage = useState('portfolioScrollPercentage', () => 0);
-
-const {width, height} = useWindowSize();
 
 </script>
 
