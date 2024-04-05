@@ -12,6 +12,7 @@
   "dependencies": {
     "@morev/vue-transitions": "^3.0.2",
     "@vee-validate/nuxt": "^4.12.6",
+    "@vercel/analytics": "^1.2.2",
     "dotenv": "^16.4.5",
     "firebase": "^10.10.0",
     "gsap": "^3.12.5",
