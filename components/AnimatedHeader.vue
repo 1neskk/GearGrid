@@ -44,7 +44,7 @@ export default {
 }
 
 .animated-header-glow {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff00de, 0 0 40px #ff00de;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #8000ff, 0 0 40px #8000ff;
     color: #fff;
 }
 </style>

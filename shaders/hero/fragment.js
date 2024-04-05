@@ -55,8 +55,7 @@ export default `
             t += SEGMENT_QUALITY;
         }
 
-        // Base Color .16, 0.05, .38, 0.
-        gl_FragColor += vec4(.102, 0.235, .722, 0.) * (0.8 + (iZoomOffset * 0.3));
+        gl_FragColor += vec4(.16, 0.05, .38, 0.) * (0.8 + (iZoomOffset * 0.3));
 
         // Specular
         gl_FragColor += c * (SPECULAR_STRENGTH + (iZoomOffset * 0.1)) * vec4(.40, 0.6, 0.89 - (iZoomOffset * 0.01), 1);

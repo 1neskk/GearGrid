@@ -5,7 +5,6 @@
     <div id="hero-canvas__container" :class="heroClasses">
   
     <div class="hero-canvas__sidebar" :class="heroClasses">
-        <CodeTag>WebGL</CodeTag>
         <div class="line-numbers">
         <span class="line-number__line" v-once v-for="i in 50"><span v-if="i < 10">0</span>{{ i }}</span>
         </div>
