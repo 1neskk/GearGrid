@@ -45,7 +45,7 @@ const { x, y } = useMouse();
 let outputX = ref(x.value);
 let outputY = ref(y.value);
 let initialXOffset = ref(1);
-const portfolioScrollPercentage = useState("portfolioScrollPercentage", () => 0);
+const scrollPercentage = useState("scrollPercentage", () => 0);
 
 const focused = useWindowFocus();
 const canvas = ref(null);
@@ -103,7 +103,7 @@ let enableRendering = computed(() => {
   locations.initialXOffset = gl.getUniformLocation(program, "iInitialXOffset");
 
   // Get the location of the portfolio scroll percentage uniform
-  locations.portfolioScrollPercentage = gl.getUniformLocation(program, "iPortfolioScrollPercentage");
+  locations.scrollPercentage = gl.getUniformLocation(program, "scrollPercentage");
 
 }
 
@@ -160,8 +160,8 @@ const renderWebGLComponent = () => {
     // Pass the initial X offset uniform
     gl.uniform1f(locations.initialXOffset, initialXOffset.value);
 
-    // Pass the portfolio scroll percentage uniform
-    gl.uniform1f(locations.portfolioScrollPercentage, portfolioScrollPercentage.value);
+    // Pass the scroll percentage uniform
+    gl.uniform1f(locations.scrollPercentage, scrollPercentage.value);
 
     // Draw the vertices
     gl.drawArrays(gl.TRIANGLES, 0, 6);
