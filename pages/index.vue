@@ -5,7 +5,7 @@
             <div class="max-w-3xl mx-auto px-4">
                 <AnimatedHeader class="pl-0 pb-0" text="Welcome to GearGrid" />
                 <AnimatedParagraph class="text-white paragraph pl-0 pb-8" text="An eCommerce specialized in selling high-end computer peripherals." />
-                <UiAlert class="text-white rounded-2xl bg-purple-700 border-2 border-black"
+                <UiAlert class="text-white rounded-2xl bg-purple-700 border-2 border-white"
                 title="New to GearGrid?" description="Only logged in users can access our wide selection of products."
                 variant="default"
                 icon="lucide:triangle-alert"
