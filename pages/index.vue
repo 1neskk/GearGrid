@@ -1,11 +1,11 @@
 <template>
-    <main class="bg-gradient-to-r from-gray-800 to-gray-300">
+    <main class="bg-gradient-to-b from-purple-600 to-bg-slate-950">
         <NavbarMain class="text-white bg-black"/>
         <div class="form-container">
             <div class="max-w-3xl mx-auto px-4">
                 <AnimatedHeader class="pl-0 pb-0" text="Welcome to GearGrid" />
-                <AnimatedParagraph class="paragraph pl-0 pb-8" text="An eCommerce specialized in selling high-end computer peripherals." />
-                <UiAlert class="text-black rounded-2xl bg-yellow-300 border-b-0 border-t-0 border-r-0 border-l-0 border-yellow-500"
+                <AnimatedParagraph class="text-white paragraph pl-0 pb-8" text="An eCommerce specialized in selling high-end computer peripherals." />
+                <UiAlert class="text-white rounded-2xl bg-purple-700 border-2 border-black"
                 title="New to GearGrid?" description="Only logged in users can access our wide selection of products."
                 variant="default"
                 icon="lucide:triangle-alert"
@@ -25,6 +25,7 @@
 useSeoMeta({
   title: "GearGrid",
   description: "Browse our wide selection of products and find the perfect items for your needs.",
+  keywords: "ecommerce, computer peripherals, high-end, GearGrid",
 });
 
 </script>
@@ -41,7 +42,5 @@ useSeoMeta({
 .paragraph {
     font-size: 1.25rem;
     font-weight: 500;
-    color: #000;;
 }
-
 </style>
