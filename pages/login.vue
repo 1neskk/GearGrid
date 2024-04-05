@@ -8,15 +8,15 @@
             <p class="mt-1 text-muted-foreground">Enter your email & password to log in.</p>
 
             <form class="mt-10" @submit="submit">
-                <fieldset class="grid gap-5">
+                <fieldset :disabled="isSubmitting"  class="grid gap-5">
                 <div>
-                    <UiVeeInput v-model="creds.email" label="Email" type="email" name="email" placeholder="john@example.com" />
+                    <UiVeeInput label="Email" type="email" name="email" placeholder="john@example.com" />
                 </div>
                 <div>
-                    <UiVeeInput v-model="creds.password" label="Password" type="password" name="password" />
+                    <UiVeeInput label="Password" type="password" name="password" />
                 </div>
                 <div>
-                    <UiButton @click="handleLogin"  class="w-full" type="submit" text="Log in" />
+                    <UiButton @click="handleSubmit"  class="w-full" type="submit" text="Log in" />
                 </div>
                 </fieldset>
             </form>
@@ -38,14 +38,9 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { object, string, type InferType } from 'yup';
 import { useRouter } from 'vue-router';
 const { loginUser } = useFirebaseAuth();
-
-const creds = reactive({
-  email: '',
-  password: ''
-});
 
 useSeoMeta({
   title: "Log in",
@@ -54,22 +49,30 @@ useSeoMeta({
 
 const router = useRouter();
 
-const handleLogin = async () => {
-  try {
-      await loginUser(creds.email, creds.password);
-      useSonner('Success', {
-        description: 'Logged in successfully.',
-      });
-      router.push('/mice');
-  } catch (error) {
-      console.error(error);
-  }
-};
+const LoginSchema = object({
+  email: string().email().required().label("Email"),
+  password: string().required().label("Password").min(8),
+});
 
-const submit = (event: Event) => {
-  event.preventDefault();
-  handleLogin();
-};
+const { handleSubmit, isSubmitting } = useForm<InferType<typeof LoginSchema>>({
+  validationSchema: LoginSchema,
+});
+
+const submit = handleSubmit(async (values) => {
+  if(await loginUser(values.email, values.password))
+  {
+    useSonner.success('Success', {
+      description: 'Logged in successfully.',
+    })
+    router.push('/');
+  }
+  else
+  {
+    useSonner.warning('Error', {
+      description: 'Failed to log in. Please check your email & password.',
+    })
+  }
+});
 
 </script>
 

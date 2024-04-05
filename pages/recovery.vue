@@ -61,14 +61,14 @@ const { handleSubmit, isSubmitting } = useForm<InferType<typeof LoginSchema>>({
 const submit = handleSubmit(async (values) => {
     if(await passwordReset(values.email))
     {
-        useSonner('Success', {
+        useSonner.success('Success', {
           description: 'Password reset instructions sent to your email.',
         })
         router.push('/login');
     }
     else
     {
-        useSonner('Error', {
+        useSonner.warning('Error', {
           description: 'Failed to send password reset instructions. Please try again.',
         })
     }

@@ -8,15 +8,15 @@
                 <p class="mt-1 text-muted-foreground">Enter your email & password to register.</p>
     
                 <form class="mt-10" @submit="submit">
-                    <fieldset class="grid gap-5">
+                    <fieldset :disabled="isSubmitting" class="grid gap-5">
                     <div>
-                        <UiVeeInput v-model="creds.email" label="Email" type="email" name="email" placeholder="john@example.com" />
+                        <UiVeeInput label="Email" type="email" name="email" placeholder="john@example.com" />
                     </div>
                     <div>
-                        <UiVeeInput v-model="creds.password" label="Password" type="password" name="password" />
+                        <UiVeeInput label="Password" type="password" name="password" />
                     </div>
                     <div>
-                        <UiButton @click="handleRegister"  class="w-full" type="submit" text="Sign Up" />
+                        <UiButton @click="handleSubmit"  class="w-full" type="submit" text="Sign Up" />
                     </div>
                     </fieldset>
                 </form>
@@ -33,9 +33,9 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { object, string, type InferType } from 'yup';
 import { useRouter } from 'vue-router';
-const {registerUser} = useFirebaseAuth();
+const { registerUser } = useFirebaseAuth();
 
 useSeoMeta({
   title: "Register",
@@ -43,27 +43,31 @@ useSeoMeta({
 });
 
 const router = useRouter();
-const creds = reactive({
-    email: '',
-    password: ''
+
+const RegisterSchema = object({
+  email: string().email().required().label("Email"),
+  password: string().required().label("Password").min(8),
 });
 
-const handleRegister = async () => {
-  try {
-      await registerUser(creds.email, creds.password);
-      useSonner('Success', {
-        description: 'Account created successfully.',
-      })
-      router.push('/mice');
-  } catch (error) {
-      console.error(error);
-  }
-};
+const { handleSubmit, isSubmitting } = useForm<InferType<typeof RegisterSchema>>({
+  validationSchema: RegisterSchema,
+});
 
-const submit = (event: Event) => {
-  event.preventDefault();
-  handleRegister();
-};
+const submit = handleSubmit(async (values) => {
+  if(await registerUser(values.email, values.password))
+  {
+    useSonner.success('Success', {
+      description: 'Account created successfully.',
+    })
+    router.push('/login');
+  }
+  else
+  {
+    useSonner.warning('Error', {
+      description: 'Failed to create account. Please try again.',
+    })
+  }
+});
 </script>
 
 <style lang="css" scoped>
