@@ -18,6 +18,7 @@
                 <div>
                     <UiButton @click="handleSubmit"  class="w-full" type="submit" text="Log in" />
                 </div>
+                <UiDivider label="OR" />
                 <UiButton @click="signInWithGoogle()" variant="outline" type="button">
                   <Icon class="size-4" name="logos:google-icon" />
                   <span class="ml-2">Continue with Google</span>
