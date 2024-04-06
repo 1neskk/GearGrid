@@ -1,4 +1,6 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail ,type Auth, type User } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail
+        ,type Auth, type User, GoogleAuthProvider, signInWithPopup
+    } from "firebase/auth";
 
 export default function() {
     const { $auth} = useNuxtApp();
@@ -38,6 +40,24 @@ export default function() {
         return false;
     }
 
+    const googleLogin = async () : Promise<boolean> => {
+        try {
+            const provider = new GoogleAuthProvider();
+            const userCredentials = await signInWithPopup($auth as Auth, provider);
+            if (userCredentials) {
+                user.value = userCredentials.user;
+                return true;
+            }
+        } catch (error : unknown) {
+            if (error instanceof Error) {
+                console.error(error.message);
+                alert(error.message);
+            }
+            return false;
+        }
+        return false;
+    }
+
     const passwordReset = async (email: string) : Promise<boolean> => {
         try {
             await sendPasswordResetEmail($auth as Auth, email);
@@ -55,6 +75,7 @@ export default function() {
         user,
         registerUser,
         loginUser,
+        googleLogin,
         passwordReset
     }
 }

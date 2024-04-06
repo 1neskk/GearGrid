@@ -18,6 +18,10 @@
                 <div>
                     <UiButton @click="handleSubmit"  class="w-full" type="submit" text="Log in" />
                 </div>
+                <UiButton @click="signInWithGoogle()" variant="outline" type="button">
+                  <Icon class="size-4" name="logos:google-icon" />
+                  <span class="ml-2">Continue with Google</span>
+                </UiButton>
                 </fieldset>
             </form>
             <p class="mt-8 text-sm">
@@ -40,7 +44,7 @@
 <script lang="ts" setup>
 import { object, string, type InferType } from 'yup';
 import { useRouter } from 'vue-router';
-const { loginUser } = useFirebaseAuth();
+const { loginUser, googleLogin } = useFirebaseAuth();
 
 useSeoMeta({
   title: "Log in",
@@ -73,6 +77,22 @@ const submit = handleSubmit(async (values) => {
     })
   }
 });
+
+const signInWithGoogle = async () => {
+  if(await googleLogin())
+  {
+    useSonner.success('Success', {
+      description: 'Logged in successfully.',
+    })
+    router.push('/mice');
+  }
+  else
+  {
+    useSonner.warning('Error', {
+      description: 'Failed to log in. Please try again.',
+    })
+  }
+}
 
 </script>
 
