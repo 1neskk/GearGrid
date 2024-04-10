@@ -14,7 +14,7 @@
     "@vee-validate/nuxt": "^4.12.6",
     "@vercel/analytics": "^1.2.2",
     "dotenv": "^16.4.5",
-    "firebase": "^10.10.0",
+    "firebase": "^10.6.0",
     "gsap": "^3.12.5",
     "nuxt": "^3.11.1",
     "radix-vue": "^1.6.1",
@@ -22,7 +22,6 @@
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
     "vue-sonner": "^1.1.2",
-    "vuefire": "^3.1.23",
     "yup": "^1.4.0"
   },
   "devDependencies": {
