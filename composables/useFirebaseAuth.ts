@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail
-        ,type Auth, type User, GoogleAuthProvider, signInWithPopup
+        ,type Auth, type User, GoogleAuthProvider, signInWithPopup, signOut, setPersistence,
+        browserLocalPersistence
     } from "firebase/auth";
 
 export default function() {
@@ -25,6 +26,7 @@ export default function() {
 
     const loginUser = async (email: string, password: string) : Promise<boolean> => {
         try {
+            await setPersistence($auth as Auth, browserLocalPersistence);
             const userCredentials = await signInWithEmailAndPassword($auth as Auth, email, password);
             if (userCredentials) {
                 user.value = userCredentials.user;
@@ -42,6 +44,7 @@ export default function() {
 
     const googleLogin = async () : Promise<boolean> => {
         try {
+            await setPersistence($auth as Auth, browserLocalPersistence);
             const provider = new GoogleAuthProvider();
             const userCredentials = await signInWithPopup($auth as Auth, provider);
             if (userCredentials) {
@@ -56,6 +59,20 @@ export default function() {
             return false;
         }
         return false;
+    }
+
+    const logout = async () : Promise<boolean> => {
+        try {
+            await signOut($auth as Auth);
+            user.value = null;
+            return true;
+        } catch (error : unknown) {
+            if (error instanceof Error) {
+                console.error(error.message);
+                alert(error.message);
+            }
+            return false;
+        }
     }
 
     const passwordReset = async (email: string) : Promise<boolean> => {

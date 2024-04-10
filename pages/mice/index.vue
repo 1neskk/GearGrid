@@ -10,14 +10,27 @@
 
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
+import { onAuthStateChanged, type Auth } from 'firebase/auth';
+
+const { $auth} = useNuxtApp();
 const { user } = useFirebaseAuth();
 const { getCollection } = useFirebaseDb();
 
 const router = useRouter();
 
-if (!user.value) {
-    router.push('/login');
-}
+onBeforeMount(() => {
+    onAuthStateChanged($auth as Auth, (firebaseUser) => {
+        if(firebaseUser)
+        {
+            console.log('User is logged in');
+            user.value = firebaseUser;
+        }
+        else {
+            console.log('User is not logged in');
+            router.push('/login');
+        }
+    });
+});
 
 useSeoMeta({
   title: "Mice",
