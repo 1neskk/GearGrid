@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswor
     } from "firebase/auth";
 
 export default function() {
-    const { $auth} = useNuxtApp();
+    const { $auth } = useNuxtApp();
     const user = useState<User | null>("fb_user", () => null);
 
     const registerUser = async (email: string, password: string) : Promise<boolean> => {
