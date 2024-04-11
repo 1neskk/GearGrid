@@ -16,6 +16,13 @@ export interface Keyboards {
     img: string;
 }
 
+export interface Mousepads {
+    id: string;
+    name: string;
+    price: number;
+    img: string;
+}
+
 export default function() {
     const { $firestore } = useNuxtApp();
 
@@ -31,6 +38,15 @@ export default function() {
     const addKeyboard = async (keyboard: Keyboards) => {
         try {
             const docRef = await addDoc(collection($firestore as Firestore, "keyboards"), keyboard);
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
+
+    const addMousepad = async (mousepad: Mousepads) => {
+        try {
+            const docRef = await addDoc(collection($firestore as Firestore, "mousepads"), mousepad);
             console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
@@ -59,9 +75,22 @@ export default function() {
         return keyboards;
     }
 
+    const fetchMousepads = async () : Promise<Mousepads[]> => {
+        const mousepads: Mousepads[] = [];
+        const q = query(collection($firestore as Firestore, "mousepads"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            //console.log(doc.id, " => ", doc.data());
+            mousepads.push({ id: doc.id, ...doc.data() } as Mousepads);
+        });
+        return mousepads;
+    }
+
     return { addMouse,
         fetchMice,
         addKeyboard,
-        fetchKeyboards
+        fetchKeyboards,
+        addMousepad,
+        fetchMousepads
     };
 }

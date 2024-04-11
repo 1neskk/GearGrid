@@ -22,6 +22,16 @@
                 border-gray-300 rounded-lg" />
                 <button @click="submitKeyboard" class="p-2 bg-purple-600 text-white rounded-lg">Add Keyboard</button>
             </div>
+            <!-- Mousepads -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8">
+                <input v-model="mousepad.name" type="text" placeholder="Name" class="p-2 text-black border border-gray-300 
+                rounded-lg" />
+                <input v-model="mousepad.price" type="number" placeholder="Price" class="p-2 text-black border
+                border-gray-300 rounded-lg" />
+                <input v-model="mousepad.img" type="text" placeholder="Image" class="p-2 text-black border
+                border-gray-300 rounded-lg" />
+                <button @click="submitMousepad" class="p-2 bg-purple-600 text-white rounded-lg">Add Mousepad</button>
+            </div>
         </main>
     </div>
 </template>
@@ -32,7 +42,7 @@ import { onAuthStateChanged, type Auth } from 'firebase/auth';
 
 const { $auth } = useNuxtApp();
 const { user } = useFirebaseAuth();
-const { addMouse, addKeyboard } = useFirestoreDB();
+const { addMouse, addKeyboard, addMousepad } = useFirestoreDB();
 
 const router = useRouter();
 
@@ -61,6 +71,12 @@ const keyboard = ref({
     img: ''
 });
 
+const mousepad = ref({
+    name: '',
+    price: 0,
+    img: ''
+});
+
 const submitMouse = () => {
     addMouse(mouse.value).then(() => {
         useSonner.success('Mouse added successfully');
@@ -82,6 +98,18 @@ const submitKeyboard = () => {
         };
     }).catch((error) => {
             useSonner.error('Error adding keyboard: ' + error.message);
+    });
+}
+
+const submitMousepad = () => {
+    addMousepad(mousepad.value).then(() => {
+        useSonner.success('Mousepad added successfully');
+        mousepad.value = {
+            name: '',
+            price: 0
+        };
+    }).catch((error) => {
+            useSonner.error('Error adding mousepad: ' + error.message);
     });
 }
 </script>
