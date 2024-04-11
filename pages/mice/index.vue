@@ -3,12 +3,17 @@
         <main class="bg-gradient-to-b from-purple-600 to-bg-slate-950">
             <NavbarMain class="bg-black" />
             <!-- mice -->
-            <ul class="grid grid-cols-1 gap-4 p-4">
-                <li v-for="mouse in mice" :key="mouse.id" class="bg-white p-4 rounded shadow">
-                    <h2 class="text-xl text-black font-bold">{{ mouse.name }}</h2>
-                    <p class="text-gray-500">R${{ mouse.price }}.00</p>
-                </li>
-            </ul>
+            <section class="container mx-auto py-12">
+                <h1 class="text-4xl text-white text-center font-bold mb-8">Mice</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <ProductCard
+                        v-for="mouse in mice"
+                        :id="mouse.id"
+                        :title="mouse.name"
+                        :price="mouse.price"
+                    />
+                </div>
+            </section>
         </main>
     </section>
 </template>
