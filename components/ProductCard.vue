@@ -12,18 +12,30 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import { defineProps } from 'vue';
+<script lang="ts">
+import { gsap } from 'gsap';
 
-const props = defineProps({
-    id: String,
-    title: String,
-    price: Number,
-    img: String,
-});
+export default {
+    name: 'ProductCard',
+    props: {
+        id: String,
+        title: String,
+        price: Number,
+        img: String,
+    },
+
+    mounted() {
+        const card = this.$el;
+        gsap.set(card, { opacity: 0, y: 100 });
+        gsap.to(card, {
+            duration: 1.2,
+            opacity: 1,
+            y: 0,
+            ease: 'back.out',
+            stagger: 0.2,
+        });
+    },
+    
+};
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>

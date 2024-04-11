@@ -4,7 +4,7 @@
             <NavbarMain class="bg-black" />
             <!-- mice -->
             <section class="container mx-auto py-12">
-                <h1 class="text-4xl text-white text-center font-bold mb-8">Mice</h1>
+                <AnimatedHeader class="mice text-4xl justify-center text-white text-center font-bold mb-8" text="Mice" />
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <ProductCard
                         v-for="mouse in mice"
@@ -65,5 +65,12 @@ useSeoMeta({
     right: 0;
     left: 0;
     bottom: 0;
+}
+
+.mice {
+    @apply not-italic;
+
+    // disable text-shadow
+    text-shadow: none;
 }
 </style>
