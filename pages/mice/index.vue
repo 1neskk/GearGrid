@@ -58,10 +58,11 @@ useSeoMeta({
 
 <style lang="scss" scoped>
 .page {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+    overflow-y: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
 </style>

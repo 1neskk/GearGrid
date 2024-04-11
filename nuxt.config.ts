@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 
   css: ["./assets/css/main.css"],
 
+
   runtimeConfig: {
     public: {
     FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,

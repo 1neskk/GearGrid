@@ -16,7 +16,7 @@
 import { ref } from 'vue';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
 
-const { $auth} = useNuxtApp();
+const { $auth } = useNuxtApp();
 const { user } = useFirebaseAuth();
 const { addMouse } = useFirestoreDB();
 
