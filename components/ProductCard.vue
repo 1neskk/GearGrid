@@ -6,7 +6,7 @@
             <h2 class="text-lg font-semibold text-gray-800">{{ title }}</h2>
             <p class="text-gray-700 mt-2">R${{ price }}.00</p>
             <button class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                Add to cart
+                View details
             </button>
         </div>
     </div>
