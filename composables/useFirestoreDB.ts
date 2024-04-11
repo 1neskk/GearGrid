@@ -1,20 +1,35 @@
-import { collection, addDoc, type Firestore  } from "firebase/firestore";
+import { collection, addDoc, getDocs,
+    type Firestore, query
+} from "firebase/firestore";
+
+export interface Mice {
+    id: string;
+    name: string;
+    price: number;
+}
 
 export default function() {
     const { $firestore } = useNuxtApp();
 
-    const addMouse = async (mouse: any) : Promise<boolean> => {
+    const addMouse = async (mouse: Mice) => {
         try {
-            await addDoc(collection($firestore as Firestore, "mice"), { mouse });
-            return true;
-        } catch (error : unknown) {
-            if (error instanceof Error) {
-                console.error(error.message);
-                alert(error.message);
-            }
-            return false;
+            const docRef = await addDoc(collection($firestore as Firestore, "mice"), mouse);
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
         }
     }
 
-    return { addMouse };
+    const fetchMice = async () : Promise<Mice[]> => {
+        const mice: Mice[] = [];
+        const q = query(collection($firestore as Firestore, "mice"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            //console.log(doc.id, " => ", doc.data());
+            mice.push({ id: doc.id, ...doc.data() } as Mice);
+        });
+        return mice;
+    }
+
+    return { addMouse, fetchMice,};
 }

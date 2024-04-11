@@ -5,9 +5,11 @@
             <div class="form-container">
                 <div class="max-w-3xl mx-auto px-4">
                     <AnimatedHeader class="pl-0 pb-0" text="Welcome to GearGrid" />
-                    <AnimatedParagraph class="text-white paragraph pl-0 pb-8" text="An eCommerce specialized in selling high-end computer peripherals." />
+                    <AnimatedParagraph class="text-white paragraph pl-0 pb-8"
+                    text="An eCommerce specialized in selling high-end computer peripherals." />
                     <UiAlert class="text-white rounded-2xl bg-black border-1"
-                    title="New to GearGrid?" description="Only logged in users can access our wide selection of products."
+                    title="New to GearGrid?"
+                    description="Only logged in users can access our wide selection of products."
                     variant="default"
                     icon="lucide:triangle-alert"
                     />
