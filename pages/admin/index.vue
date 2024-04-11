@@ -24,7 +24,7 @@ const router = useRouter();
 
 onBeforeMount(() => {
     onAuthStateChanged($auth as Auth, (firebaseUser) => {
-        if(firebaseUser.email === 'contato.nesk@outlook.com')
+        if(firebaseUser && firebaseUser.email === 'contato.nesk@outlook.com')
         {
             user.value = firebaseUser;
             useSonner.info('User is logged in as ' + firebaseUser.email);
