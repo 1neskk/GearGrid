@@ -6,6 +6,7 @@ export interface Mice {
     id: string;
     name: string;
     price: number;
+    img: string;
 }
 
 export default function() {

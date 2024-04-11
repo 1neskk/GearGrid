@@ -1,6 +1,6 @@
 <template>
-    <section class="page">
-        <main class="bg-gradient-to-b from-purple-600 to-bg-slate-950">
+    <section class="page bg-gradient-to-b from-purple-950 to-slate-950">
+        <main>
             <NavbarMain class="bg-black" />
             <!-- mice -->
             <section class="container mx-auto py-12">
@@ -11,6 +11,7 @@
                         :id="mouse.id"
                         :title="mouse.name"
                         :price="mouse.price"
+                        :img="mouse.img"
                     />
                 </div>
             </section>
