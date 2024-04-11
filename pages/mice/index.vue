@@ -69,8 +69,5 @@ useSeoMeta({
 
 .mice {
     @apply not-italic;
-
-    // disable text-shadow
-    text-shadow: none;
 }
 </style>

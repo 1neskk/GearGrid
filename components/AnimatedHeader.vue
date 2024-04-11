@@ -1,6 +1,6 @@
 <template>
     <h1 ref="header" class="animated-header-glow flex text-white text-4xl font-bold italic px-6">
-        <span v-for="(word, index) in words" :key="index" class="span-text mouse-md mr-3" ref="word">{{ word }}</span>
+        <span v-for="(word, index) in words" :key="index" class="mouse-md mr-3" ref="word">{{ word }}</span>
     </h1>
 </template>
 
@@ -38,13 +38,7 @@ export default {
   display: flex;
 }
 
-.span-text {
-    color:#fff;
-    /* text-shadow: 0 0 10px #9d00ff, 0 0 15px #9d00ff; */
-}
-
 .animated-header-glow {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #8000ff, 0 0 40px #8000ff;
     color: #fff;
 }
 </style>

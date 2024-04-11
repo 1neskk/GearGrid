@@ -4,7 +4,7 @@
             <NavbarMain class="text-white bg-black"/>
             <div class="form-container">
                 <div class="max-w-3xl mx-auto px-4">
-                    <AnimatedHeader class="pl-0 pb-0" text="Welcome to GearGrid" />
+                    <AnimatedHeader class="headermain pl-0 pb-0" text="Welcome to GearGrid" />
                     <AnimatedParagraph class="text-white paragraph pl-0 pb-8"
                     text="An eCommerce specialized in selling high-end computer peripherals." />
                     <UiAlert class="text-white rounded-2xl bg-black border-1"
@@ -55,6 +55,10 @@ useSeoMeta({
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.headermain {
+    text-shadow: 0 0 10px #fff, 0 0 20px #9000ff, 0 0 30px #8000ff, 0 0 40px #8000ff;
 }
 
 .paragraph {
