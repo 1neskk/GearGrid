@@ -28,7 +28,7 @@
                 dark:border-gray-700" aria-current="page">Mice</a>
                 </li>
                 <li>
-                <a href="/404" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent
+                <a href="/keyboards" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent
                 md:hover:text-blue-700 md:p-0 md:dark:hover:text-violet-500 md:dark:hover:underline 
                 nderline-offset-4 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent
                 dark:border-gray-700">Keyboards</a>

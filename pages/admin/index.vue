@@ -1,12 +1,26 @@
 <template>
     <div class="page">
         <main class="bg-gradient-to-b from-purple-600 to-bg-slate-950">
+            <div class="p-8 text-white text-2xl">Admin</div>
+            <!-- Mouse -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8">
                 <input v-model="mouse.name" type="text" placeholder="Name" class="p-2 text-black border border-gray-300 
                 rounded-lg" />
                 <input v-model="mouse.price" type="number" placeholder="Price" class="p-2 text-black border
                 border-gray-300 rounded-lg" />
+                <input v-model="mouse.img" type="text" placeholder="Image" class="p-2 text-black border
+                border-gray-300 rounded-lg" />
                 <button @click="submitMouse" class="p-2 bg-purple-600 text-white rounded-lg">Add Mouse</button>
+            </div>
+            <!-- Keyboard -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8">
+                <input v-model="keyboard.name" type="text" placeholder="Name" class="p-2 text-black border border-gray-300 
+                rounded-lg" />
+                <input v-model="keyboard.price" type="number" placeholder="Price" class="p-2 text-black border
+                border-gray-300 rounded-lg" />
+                <input v-model="keyboard.img" type="text" placeholder="Image" class="p-2 text-black border
+                border-gray-300 rounded-lg" />
+                <button @click="submitKeyboard" class="p-2 bg-purple-600 text-white rounded-lg">Add Keyboard</button>
             </div>
         </main>
     </div>
@@ -18,7 +32,7 @@ import { onAuthStateChanged, type Auth } from 'firebase/auth';
 
 const { $auth } = useNuxtApp();
 const { user } = useFirebaseAuth();
-const { addMouse } = useFirestoreDB();
+const { addMouse, addKeyboard } = useFirestoreDB();
 
 const router = useRouter();
 
@@ -37,7 +51,14 @@ onBeforeMount(() => {
 
 const mouse = ref({
     name: '',
-    price: 0
+    price: 0,
+    img: ''
+});
+
+const keyboard = ref({
+    name: '',
+    price: 0,
+    img: ''
 });
 
 const submitMouse = () => {
@@ -47,9 +68,21 @@ const submitMouse = () => {
             name: '',
             price: 0
         };
-        }).catch((error) => {
+    }).catch((error) => {
             useSonner.error('Error adding mouse: ' + error.message);
-        });
+    });
+}
+
+const submitKeyboard = () => {
+    addKeyboard(keyboard.value).then(() => {
+        useSonner.success('Keyboard added successfully');
+        keyboard.value = {
+            name: '',
+            price: 0
+        };
+    }).catch((error) => {
+            useSonner.error('Error adding keyboard: ' + error.message);
+    });
 }
 </script>
 
