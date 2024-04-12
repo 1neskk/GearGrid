@@ -10,10 +10,12 @@
             <form class="mt-10" @submit="submit">
                 <fieldset :disabled="isSubmitting"  class="grid gap-5">
                 <div>
-                    <UiVeeInput label="Email" type="email" name="email" placeholder="john@example.com" />
+                    <UiVeeInput label="Email" type="email" name="email"
+                    placeholder="john@example.com" />
                 </div>
                 <div>
-                    <UiVeeInput label="Password" type="password" name="password" />
+                    <UiVeeInput label="Password" type="password"
+                    name="password" />
                 </div>
                 <div>
                     <UiButton @click="handleSubmit"  class="w-full" type="submit" text="Log in" />
@@ -21,7 +23,7 @@
                 <UiDivider label="OR" />
                 <UiButton @click="signInWithGoogle()" variant="outline" type="button">
                   <Icon class="size-4" name="logos:google-icon" />
-                  <span class="ml-2">Continue with Google</span>
+                  <span class="md:text-black md:dark:text-white ml-2">Continue with Google</span>
                 </UiButton>
                 </fieldset>
             </form>

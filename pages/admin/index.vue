@@ -1,6 +1,8 @@
 <template>
-    <div class="page">
-        <main class="bg-gradient-to-b from-purple-600 to-bg-slate-950">
+    <div class="page bg-indigo-950">
+        <main>
+            <!-- <NavbarMain class="bg-black" /> -->
+            <NavbarTest />
             <div class="p-8 text-white text-2xl">Admin</div>
             <!-- Mouse -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8">
@@ -60,18 +62,21 @@ onBeforeMount(() => {
 });
 
 const mouse = ref({
+    id: '',
     name: '',
     price: 0,
     img: ''
 });
 
 const keyboard = ref({
+    id: '',
     name: '',
     price: 0,
     img: ''
 });
 
 const mousepad = ref({
+    id: '',
     name: '',
     price: 0,
     img: ''
@@ -81,8 +86,10 @@ const submitMouse = () => {
     addMouse(mouse.value).then(() => {
         useSonner.success('Mouse added successfully');
         mouse.value = {
+            id: '',
             name: '',
-            price: 0
+            price: 0,
+            img: ''
         };
     }).catch((error) => {
             useSonner.error('Error adding mouse: ' + error.message);
@@ -93,8 +100,10 @@ const submitKeyboard = () => {
     addKeyboard(keyboard.value).then(() => {
         useSonner.success('Keyboard added successfully');
         keyboard.value = {
+            id: '',
             name: '',
-            price: 0
+            price: 0,
+            img: ''
         };
     }).catch((error) => {
             useSonner.error('Error adding keyboard: ' + error.message);
@@ -105,8 +114,10 @@ const submitMousepad = () => {
     addMousepad(mousepad.value).then(() => {
         useSonner.success('Mousepad added successfully');
         mousepad.value = {
+            id: '',
             name: '',
-            price: 0
+            price: 0,
+            img: ''
         };
     }).catch((error) => {
             useSonner.error('Error adding mousepad: ' + error.message);
