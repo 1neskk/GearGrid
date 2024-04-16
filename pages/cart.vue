@@ -1,17 +1,20 @@
 <template>
-    <section class="page bg-gradient-to-b from-indigo-950 to-purple-950">
+    <section class="page bg-gradient-to-r from-indigo-950 to-slate-950">
         <main>
-            <NavbarTest />
+            <NavbarProducts />
             <div class="container mx-auto">
                 <h1 class="py-5 text-2xl font-bold mb-4">Shopping Cart</h1>
 
                 <div v-if="cart.length === 0" class="text-center text-white">
-                    <p>Your cart is empty</p>
-                    <router-link to="/" class="text-blue-500 hover:underline">Continue Shopping</router-link>
+                    <p>Your shopping cart is empty</p>
+
+                    <button @click="router.push('/mice')" class="bg-blue-500 hover:bg-blue-800 text-white px-4 py-2
+                    rounded-lg mt-4">Go to Products</button>
                 </div>
 
                 <div v-else>
-                    <div v-for="item in cart" :id="item.id" class="flex justify-between items-center bg-white p-4 mb-4 rounded">
+                    <div v-for="item in cart" :id="item.id" class="flex justify-between items-center bg-white
+                    p-4 mb-4 rounded">
                         <div class="flex items-center">
                             <img :src="item.img" alt="product" class="w-20 h-20 object-cover rounded">
                             <div class="ml-4">
@@ -22,7 +25,8 @@
                     </div>
 
                     <div class="flex justify-between mt-5">
-                        <button @click="clearCart" class="bg-red-500 text-white px-4 py-2 rounded">Clear Cart</button>
+                        <button @click="clearCart" class="bg-red-500 hover:bg-red-800 text-white px-4 py-2
+                        rounded-lg">Clear Cart</button>
                         <div class="text-white">
                             <p>Total: R$ {{ total }}</p>
                             <router-link to="/" class="text-blue-500">Checkout</router-link>
@@ -35,7 +39,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount, onMounted, computed } from 'vue';
+import { onBeforeMount, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCart } from '@/composables/useCart';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
@@ -49,10 +53,11 @@ onBeforeMount(() => {
         if(firebaseUser)
         {
             user.value = firebaseUser;
-            useSonner.info('User is logged in as ' + firebaseUser.email);
+            // useSonner.info('User is logged in as ' + firebaseUser.email);
         }
         else {
             router.push('/login');
+            useSonner.error('User is not logged in!');
         }
     });
 });

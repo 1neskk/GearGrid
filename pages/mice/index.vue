@@ -1,10 +1,10 @@
 <template>
     <section class="page bg-gradient-to-b from-purple-950 to-slate-950">
         <main>
-            <NavbarMain class="bg-black" />
+            <NavbarProducts />
             <!-- mice -->
             <section class="container mx-auto py-12">
-                <AnimatedHeader class="mice text-4xl justify-center text-white text-center font-bold mb-8" text="Mice" />
+                <AnimatedHeader class="not-italic text-4xl justify-center text-white text-center font-bold mb-8" text="Mice" />
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <ProductCard
                         v-for="mouse in mice"
@@ -42,10 +42,11 @@ onBeforeMount(() => {
         if(firebaseUser)
         {
             user.value = firebaseUser;
-            useSonner.info('User is logged in as ' + firebaseUser.email);
+            // useSonner.info('User is logged in as ' + firebaseUser.email);
         }
         else {
             router.push('/login');
+            useSonner.error('User is not logged in!');
         }
     });
 });
@@ -67,7 +68,4 @@ useSeoMeta({
     bottom: 0;
 }
 
-.mice {
-    @apply not-italic;
-}
 </style>
