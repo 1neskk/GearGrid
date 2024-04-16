@@ -1,7 +1,7 @@
 <template>
     <section class="page bg-gradient-to-b from-purple-950 to-slate-950">
         <main>
-            <NavbarMain class="bg-black" />
+            <NavbarProducts />
             <!-- Mousepads -->
             <section class="container mx-auto py-12">
                 <AnimatedHeader class="not-italic text-4xl justify-center text-white text-center font-bold mb-8" text="Mousepads" />
@@ -9,7 +9,7 @@
                     <ProductCard
                         v-for="mousepad in mousepads"
                         :id="mousepad.id"
-                        :title="mousepad.name"
+                        :name="mousepad.name"
                         :price="mousepad.price"
                         :img="mousepad.img"
                     />
@@ -23,13 +23,13 @@
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
-import { type Mousepads } from '../../composables/useFirestoreDB';
+import { type Products } from '../../composables/useFirestoreDB';
 
 const { $auth} = useNuxtApp();
 const { user } = useFirebaseAuth();
 const { fetchMousepads } = useFirestoreDB();
 
-const mousepads = ref<Mousepads[]>([]);
+const mousepads = ref<Products[]>([]);
 
 onMounted( async () => {
     mousepads.value = await fetchMousepads();
@@ -42,10 +42,14 @@ onBeforeMount(() => {
         if(firebaseUser)
         {
             user.value = firebaseUser;
-            useSonner.info('User is logged in as ' + firebaseUser.email);
+            // useSonner.info('User is logged in as ' + firebaseUser.email);
         }
         else {
             router.push('/login');
+            useSonner.error('Error!', {
+                description: 'User is not logged in.',
+                duration: 2000,
+            })
         }
     });
 });

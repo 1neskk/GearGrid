@@ -68,8 +68,9 @@ const { handleSubmit, isSubmitting } = useForm<InferType<typeof LoginSchema>>({
 const submit = handleSubmit(async (values) => {
   if(await loginUser(values.email, values.password))
   {
-    useSonner.success('Success', {
+    useSonner.success('Success!', {
       description: 'Logged in successfully.',
+      duration: 2000,
     })
     router.push('/Mice');
   }

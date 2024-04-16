@@ -1,15 +1,15 @@
 <template>
     <section class="page bg-gradient-to-b from-purple-950 to-slate-950">
         <main>
-            <NavbarMain class="bg-black" />
+            <NavbarProducts />
             <!-- mice -->
             <section class="container mx-auto py-12">
-                <AnimatedHeader class="mice text-4xl justify-center text-white text-center font-bold mb-8" text="Mice" />
+                <AnimatedHeader class="not-italic text-4xl justify-center text-white text-center font-bold mb-8" text="Mice" />
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <ProductCard
                         v-for="mouse in mice"
                         :id="mouse.id"
-                        :title="mouse.name"
+                        :name="mouse.name"
                         :price="mouse.price"
                         :img="mouse.img"
                     />
@@ -23,13 +23,13 @@
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
-import { type Mice } from '../../composables/useFirestoreDB';
+import { type Products } from '../../composables/useFirestoreDB';
 
 const { $auth} = useNuxtApp();
 const { user } = useFirebaseAuth();
 const { fetchMice } = useFirestoreDB();
 
-const mice = ref<Mice[]>([]);
+const mice = ref<Products[]>([]);
 
 onMounted( async () => {
     mice.value = await fetchMice();
@@ -42,10 +42,14 @@ onBeforeMount(() => {
         if(firebaseUser)
         {
             user.value = firebaseUser;
-            useSonner.info('User is logged in as ' + firebaseUser.email);
+            // useSonner.info('User is logged in as ' + firebaseUser.email);
         }
         else {
             router.push('/login');
+            useSonner.error('Error!', {
+                description: 'User is not logged in.',
+                duration: 2000,
+            })
         }
     });
 });
@@ -67,7 +71,4 @@ useSeoMeta({
     bottom: 0;
 }
 
-.mice {
-    @apply not-italic;
-}
 </style>

@@ -69,7 +69,7 @@ const submit = handleSubmit(async (values) => {
     }
     else
     {
-        useSonner.warning('Error', {
+        useSonner.error('Error', {
           description: 'Failed to send password reset instructions. Please try again.',
         })
     }

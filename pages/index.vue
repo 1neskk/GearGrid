@@ -1,7 +1,7 @@
 <template>
     <section class="page">
         <main>
-            <NavbarMain class="text-white bg-black"/>
+            <NavbarMain class="text-white"/>
             <div class="form-container">
                 <div class="max-w-3xl mx-auto px-4">
                     <AnimatedHeader class="headermain pl-0 pb-0" text="Welcome to GearGrid" />
