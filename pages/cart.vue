@@ -29,7 +29,7 @@
                         rounded-lg">Clear Cart</button>
                         <div class="text-white">
                             <p>Total: R$ {{ total }}</p>
-                            <router-link to="/" class="text-blue-500">Checkout</router-link>
+                            <router-link to="/checkout" class="text-blue-500">Checkout</router-link>
                         </div>
                     </div>
                 </div>
