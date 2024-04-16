@@ -16,16 +16,25 @@
         </div>
         <div class="flex items-center space-x-4">
             <router-link to="/cart" class="text-white">Cart</router-link>
-            <UiAvatar fallback="JD" />
+            <UiAvatar :fallback="emailInitials" />
         </div>
     </nav>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+
+const { user } = useFirebaseAuth();
+const emailInitials = ref('');
+
+watch(user, (newUser) => {
+    if(newUser)
+    {
+        emailInitials.value = (newUser.email || '').split('@')[0].slice(0, 2).toUpperCase();
+    }
+});
 
 const links = ref([
-    { name: 'Home', path: '/' },
     { name: 'Mice', path: '/mice' },
     { name: 'Keyboards', path: '/keyboards' },
     { name: 'Mousepads', path: '/mousepads' },

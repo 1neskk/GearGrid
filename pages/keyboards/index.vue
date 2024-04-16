@@ -1,7 +1,8 @@
 <template>
     <section class="page bg-gradient-to-b from-purple-950 to-slate-950">
         <main>
-            <NavbarMain class="bg-black" />
+            <!-- <NavbarMain class="bg-black" /> -->
+            <NavbarTest />
             <!-- Keyboards -->
             <section class="container mx-auto py-12">
                 <AnimatedHeader class="keyboards text-4xl justify-center text-white text-center font-bold mb-8" text="Keyboards" />
@@ -9,7 +10,7 @@
                     <ProductCard
                         v-for="keyboard in keyboards"
                         :id="keyboard.id"
-                        :title="keyboard.name"
+                        :name="keyboard.name"
                         :price="keyboard.price"
                         :img="keyboard.img"
                     />
@@ -23,13 +24,13 @@
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
-import { type Keyboards } from '../../composables/useFirestoreDB';
+import { type Products } from '../../composables/useFirestoreDB';
 
 const { $auth} = useNuxtApp();
 const { user } = useFirebaseAuth();
 const { fetchKeyboards } = useFirestoreDB();
 
-const keyboards = ref<Keyboards[]>([]);
+const keyboards = ref<Products[]>([]);
 
 onMounted( async () => {
     keyboards.value = await fetchKeyboards();

@@ -9,7 +9,7 @@
                     <ProductCard
                         v-for="mouse in mice"
                         :id="mouse.id"
-                        :title="mouse.name"
+                        :name="mouse.name"
                         :price="mouse.price"
                         :img="mouse.img"
                     />
@@ -23,13 +23,13 @@
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
-import { type Mice } from '../../composables/useFirestoreDB';
+import { type Products } from '../../composables/useFirestoreDB';
 
 const { $auth} = useNuxtApp();
 const { user } = useFirebaseAuth();
 const { fetchMice } = useFirestoreDB();
 
-const mice = ref<Mice[]>([]);
+const mice = ref<Products[]>([]);
 
 onMounted( async () => {
     mice.value = await fetchMice();
