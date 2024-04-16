@@ -20,7 +20,11 @@ export const useCart = () => {
   // add product to cart
   const addToCart = (product: Products) => {
     cart.value.push(product);
-    console.log('Cart updated:', cart.value);
+    useSonner.success('Success', {
+      description: 'Product added to cart',
+      duration: 1500,
+    });
+
     storeCart();
   };
 

@@ -46,7 +46,10 @@ onBeforeMount(() => {
         }
         else {
             router.push('/login');
-            useSonner.error('User is not logged in!');
+            useSonner.error('Error!', {
+                description: 'User is not logged in.',
+                duration: 2000,
+            })
         }
     });
 });

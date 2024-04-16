@@ -57,7 +57,10 @@ onBeforeMount(() => {
         }
         else {
             router.push('/login');
-            useSonner.error('User is not logged in!');
+            useSonner.error('Error!', {
+                description: 'User is not logged in.',
+                duration: 2000,
+            })
         }
     });
 });
@@ -70,7 +73,7 @@ useSeoMeta({
 const { cart, clearCart } = useCart();
 
 const total = computed(() => {
-    return cart.value.reduce((acc, item) => acc + item.price, 0);
+    return cart.value.reduce((acc, item) => acc + item.price, 0).toFixed(2);
 });
 
 </script>

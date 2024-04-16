@@ -63,7 +63,7 @@ const submit = handleSubmit(async (values) => {
   }
   else
   {
-    useSonner.warning('Error', {
+    useSonner.error('Error', {
       description: 'Failed to create account. Please try again.',
     })
   }
