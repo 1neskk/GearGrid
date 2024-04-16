@@ -24,7 +24,7 @@
                     <div class="flex justify-between mt-5">
                         <button @click="clearCart" class="bg-red-500 text-white px-4 py-2 rounded">Clear Cart</button>
                         <div class="text-white">
-                            <p>Total: ${{ total }}</p>
+                            <p>Total: R$ {{ total }}</p>
                             <router-link to="/" class="text-blue-500">Checkout</router-link>
                         </div>
                     </div>
@@ -57,16 +57,12 @@ onBeforeMount(() => {
     });
 });
 
-onMounted( async () => {
-    getCart();
-});
-
 useSeoMeta({
     title: 'Shopping Cart',
     keywords: 'shopping cart, cart, shopping',
 });
 
-const { cart, getCart, clearCart } = useCart();
+const { cart, clearCart } = useCart();
 
 const total = computed(() => {
     return cart.value.reduce((acc, item) => acc + item.price, 0);

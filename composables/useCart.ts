@@ -1,5 +1,5 @@
 import { type Products } from '@/composables/useFirestoreDB';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 export const useCart = () => {
   const cart = ref<Products[]>([]);
@@ -20,8 +20,8 @@ export const useCart = () => {
   // add product to cart
   const addToCart = (product: Products) => {
     cart.value.push(product);
+    console.log('Cart updated:', cart.value);
     storeCart();
-    console.log('Product added to cart', product);
   };
 
   // remove product from cart
@@ -35,6 +35,8 @@ export const useCart = () => {
     cart.value = [];
     storeCart();
   };
+
+  onMounted(getCart);
 
   return { cart, addToCart, removeFromCart, clearCart, getCart };
 };
