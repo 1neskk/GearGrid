@@ -15,7 +15,6 @@
 <script lang="ts">
 import { gsap } from 'gsap';
 import { useCart } from '@/composables/useCart';
-import { type Products } from '@/composables/useFirestoreDB';
 
 export default {
     name: 'ProductCard',

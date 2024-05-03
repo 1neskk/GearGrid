@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount, computed } from 'vue';
+import { onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCart } from '@/composables/useCart';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
@@ -70,11 +70,7 @@ useSeoMeta({
     keywords: 'shopping cart, cart, shopping',
 });
 
-const { cart, clearCart } = useCart();
-
-const total = computed(() => {
-    return cart.value.reduce((acc, item) => acc + item.price, 0).toFixed(2);
-});
+const { cart, clearCart, total } = useCart();
 
 </script>
 
