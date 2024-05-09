@@ -22,7 +22,9 @@
                 <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                 </svg>
             </router-link>
+            <RouterLink to="/profile" class="transform transition-transform duration-200 hover:scale-110">
             <UiAvatar :fallback="emailInitials" />
+            </RouterLink>
         </div>
     </nav>
 </template>

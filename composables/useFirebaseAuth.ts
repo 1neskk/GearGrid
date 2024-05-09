@@ -93,6 +93,7 @@ export default function() {
         registerUser,
         loginUser,
         googleLogin,
-        passwordReset
+        passwordReset,
+        logout
     }
 }
