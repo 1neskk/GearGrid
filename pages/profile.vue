@@ -46,7 +46,7 @@ watch(user, () => {
 <style lang="scss" scoped>
 .page {
     overflow-y: auto;
-    position: relative;
+    position: absolute;
     top: 0;
     right: 0;
     left: 0;
