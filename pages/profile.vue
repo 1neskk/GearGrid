@@ -1,11 +1,24 @@
 <template>
-    <div class="page profile">
-        <h1>{{ emailInitials }}</h1>
-        <ul>
-            <li><strong>Email:</strong> {{ user?.email }}</li>
-        </ul>
-        <button @click="logout" class="logout-button">Logout</button>
-    </div>
+    <section class="page bg-gradient-to-r from-indigo-950 to-slate-950">
+        <main> 
+		<NavbarProducts />
+ 		    <div class="container mx-auto h-full">
+                <h1 class="py-5 text-2xl font-bold mb-4">Profile</h1>
+                <div class="bg-white p-4 rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <!-- uiavatar -->
+			    <UiAvatar :fallback="emailInitials" />
+                            <div class="ml-4">
+                                <h2 class="text-black text-lg font-bold">Email: {{ user?.email }}</h2>
+                                <p class="text-gray-500">Member since {{ user?.metadata.creationTime }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ 	</main>
+    </section>
 </template>
 
 <script lang="ts" setup>
@@ -30,16 +43,7 @@ watch(user, () => {
 
 </script>
 
-<style scoped>
-.submit-button {
-  padding: 10px 105px;
-  background-color: indigo;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-}
+<style lang="scss" scoped>
 .page {
     overflow-y: auto;
     position: relative;
@@ -47,45 +51,5 @@ watch(user, () => {
     right: 0;
     left: 0;
     bottom: 0;
-}
-
-.profile {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #000000;
-    border-radius: 25px;
-}
-
-.logout-button {
-    padding: 10px 20px;
-    background-color: indigo;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.logout-button:hover {
-    background-color: indigo;
-}
-
-h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-p {
-    margin-bottom: 20px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 5px;
 }
 </style>
