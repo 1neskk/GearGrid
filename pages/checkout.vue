@@ -1,6 +1,7 @@
 <template>
     <section class="page bg-gradient-to-r from-indigo-950 to-slate-950">
         <main>
+	    	<NavbarProducts />
             <div class="container mx-auto px-4 py-8">
                 <h1 class="text-3xl font-bold text-white mb-4">Checkout</h1>
                 <div class="bg-white rounded-lg shadow-lg p-6">
@@ -19,7 +20,7 @@
                                     <div>Test Card: 4242 4242 4242 4242</div>
                                     <div>Test Expiry: 04/24</div>
                                     <div>Test CVC: 242</div>
-                                    <div>Ammount to pay: {{ total }}</div>
+				    <div>Ammount to pay: {{ total }}</div>
                                 </div>
                             </div> 
                         </div>
@@ -76,9 +77,9 @@ export default {
             const { id: clientSecret } = await fetch('/api/payment-intent')
             .then((res) => res.json());
 
-            const { error } = await stripe.confirmCardPayment(clientSecret, {
+            const { error } = await (stripe as any).confirmCardPayment(clientSecret, {
                 payment_method: {
-                    card: stripe.elements.getElement('card'),
+                    card: (stripe as any).elements.getElement('card'),
                 },
             });
 
