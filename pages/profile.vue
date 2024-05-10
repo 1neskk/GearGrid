@@ -30,13 +30,13 @@ const emailInitials = ref('');
 
 onMounted(() => {
     if (user.value?.email) { 
-        emailInitials.value = user.value.email.substring(0, 4).toUpperCase();
+        emailInitials.value = user.value.email.substring(0, 2).toUpperCase();
     }
 });
 
 watch(user, () => {
     if (user.value?.email) { 
-        emailInitials.value = user.value.email.substring(0, 4).toUpperCase();
+        emailInitials.value = user.value.email.substring(0, 2).toUpperCase();
     }
 });
 
