@@ -23,13 +23,13 @@
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
-import { type Products } from '../../composables/useFirestoreDB';
+import { type Product, type SimpleProduct } from '../../composables/useFirestoreDB';
 
 const { $auth} = useNuxtApp();
 const { user } = useFirebaseAuth();
 const { fetchMousepads } = useFirestoreDB();
 
-const mousepads = ref<Products[]>([]);
+const mousepads = ref<Product[]>([]);
 
 onMounted( async () => {
     mousepads.value = await fetchMousepads();

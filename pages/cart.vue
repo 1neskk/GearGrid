@@ -16,7 +16,7 @@
                     <div v-for="item in cart" :id="item.id" class="flex justify-between items-center bg-white
                     p-4 mb-4 rounded">
                         <div class="flex items-center">
-                            <img :src="item.img" alt="product" class="w-20 h-20 object-cover rounded">
+                            <img :src= "item.img" alt="product" class="w-20 h-20 object-cover rounded-lg">
                             <div class="ml-4">
                                 <h2 class="text-black text-lg font-bold">{{ item.name }}</h2>
                                 <p class="text-gray-500">R$ {{ item.price }}</p>
@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onBeforeMount, computed } from 'vue';
+import { onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCart } from '@/composables/useCart';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
@@ -70,11 +70,7 @@ useSeoMeta({
     keywords: 'shopping cart, cart, shopping',
 });
 
-const { cart, clearCart } = useCart();
-
-const total = computed(() => {
-    return cart.value.reduce((acc, item) => acc + item.price, 0).toFixed(2);
-});
+const { cart, clearCart, total } = useCart();
 
 </script>
 
