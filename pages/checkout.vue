@@ -54,7 +54,7 @@ export default {
                 if(firebaseUser)
                 {
                     user.value = firebaseUser;
-                    // useSonner.info('User is logged in as ' + firebaseUser.email);
+                    useSonner.info('Checkout functionality is unavailable and it is under development/testing.');
                 }
                 else {
                     router.push('/login');
