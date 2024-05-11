@@ -16,7 +16,7 @@
                     <div v-for="item in cart" :id="item.id" class="flex justify-between items-center bg-white
                     p-4 mb-4 rounded">
                         <div class="flex items-center">
-                            <img :src="item.img" alt="product" class="w-20 h-20 object-cover rounded">
+                            <img :src= "item.img" alt="product" class="w-20 h-20 object-cover rounded-lg">
                             <div class="ml-4">
                                 <h2 class="text-black text-lg font-bold">{{ item.name }}</h2>
                                 <p class="text-gray-500">R$ {{ item.price }}</p>
