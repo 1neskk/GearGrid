@@ -7,7 +7,7 @@ export const useCart = () => {
   // store cart's data in localStorage
   const storeCart = (): void => {
     const simpleCart: SimpleProduct[] = cart.value.map(({ id, name, price, img}) => ({ id, name, price, img}));
-    console.log("Storing cart: ", simpleCart); // log before storing
+    //console.log("Storing cart: ", simpleCart); // log before storing
     localStorage.setItem('cart', JSON.stringify(simpleCart));
   };
 
@@ -16,7 +16,7 @@ export const useCart = () => {
     const cartData = localStorage.getItem('cart');
     if (cartData) {
       const simpleCart: SimpleProduct[] = JSON.parse(cartData);
-      console.log("Retrieving cart: ", simpleCart); // log after retrieving
+      //console.log("Retrieving cart: ", simpleCart); // log after retrieving
       cart.value = simpleCart.map(rebuildProduct);
     }
   };

@@ -49,7 +49,6 @@ const { user } = useFirebaseAuth();
 const router = useRouter();
 
 onBeforeMount(() => {
-    console.log("Cart contents: ", cart);
     onAuthStateChanged($auth as Auth, (firebaseUser) => {
         if(firebaseUser)
         {
