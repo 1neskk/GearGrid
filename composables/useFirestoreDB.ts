@@ -6,11 +6,11 @@ export interface SimpleProduct {
     id: string;
     name: string;
     price: number;
+    img: string;
 }
 
 export interface Product extends SimpleProduct {
     description: string;
-    img: string;
 }
 
 export default function() {
@@ -49,7 +49,8 @@ export default function() {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             //console.log(doc.id, " => ", doc.data());
-            mice.push({ id: doc.id, ...doc.data() } as Product);
+            const data = doc.data() as Product;
+            mice.push({ id: doc.id, name: data.name, price: data.price, img: data.img, description: data.description });
         });
         return mice;
     }
@@ -60,7 +61,8 @@ export default function() {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             //console.log(doc.id, " => ", doc.data());
-            keyboards.push({ id: doc.id, ...doc.data() } as Product);
+            const data = doc.data() as Product;
+            keyboards.push({ id: doc.id, name: data.name, price: data.price, img: data.img, description: data.description });
         });
         return keyboards;
     }
@@ -71,12 +73,14 @@ export default function() {
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
             //console.log(doc.id, " => ", doc.data());
-            mousepads.push({ id: doc.id, ...doc.data() } as Product);
+            const data = doc.data() as Product;
+            mousepads.push({ id: doc.id, name: data.name, price: data.price, img: data.img, description: data.description });
         });
         return mousepads;
     }
 
-    return { addMouse,
+    return {
+        addMouse,
         fetchMice,
         addKeyboard,
         fetchKeyboards,
