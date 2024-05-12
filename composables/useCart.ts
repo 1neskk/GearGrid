@@ -21,7 +21,6 @@ export const useCart = () => {
     }
   };
  
-  // TODO: fix Item's image not showing in cart
   const rebuildProduct = (simpleItem: SimpleProduct): Product => {
     return {
       ...simpleItem,
