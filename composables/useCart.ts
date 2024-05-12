@@ -6,7 +6,7 @@ export const useCart = () => {
 
   // store cart's data in localStorage
   const storeCart = (): void => {
-    const simpleCart: SimpleProduct[] = cart.value.map(({ id, name, price }) => ({ id, name, price }));
+    const simpleCart: SimpleProduct[] = cart.value.map(({ id, name, price, img}) => ({ id, name, price, img}));
     console.log("Storing cart: ", simpleCart); // log before storing
     localStorage.setItem('cart', JSON.stringify(simpleCart));
   };
@@ -23,12 +23,10 @@ export const useCart = () => {
  
   // TODO: fix Item's image not showing in cart
   const rebuildProduct = (simpleItem: SimpleProduct): Product => {
-    const { id, name, price } = simpleItem;
     return {
       ...simpleItem,
-      description: (simpleItem as Product).description,
-      img: (simpleItem as Product).img,
-    }
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    };
   };
 
   const addToCart = (product: Product): void => {

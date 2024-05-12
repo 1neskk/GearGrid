@@ -13,13 +13,13 @@
                 </div>
 
                 <div v-else>
-                    <div v-for="item in cart" :id="item.id" class="flex justify-between items-center bg-white
+                    <div v-for="product in cart" :key="product.id" class="flex justify-between items-center bg-white
                     p-4 mb-4 rounded">
                         <div class="flex items-center">
-                            <img :src= "item.img" alt="product" class="w-20 h-20 object-cover rounded-lg">
+                            <img :src= "product.img" :alt="product.name" class="w-20 h-20 object-cover rounded-lg">
                             <div class="ml-4">
-                                <h2 class="text-black text-lg font-bold">{{ item.name }}</h2>
-                                <p class="text-gray-500">R$ {{ item.price }}</p>
+                                <h2 class="text-black text-lg font-bold">{{ product.name }}</h2>
+                                <p class="text-gray-500">R$ {{ product.price }}</p>
                             </div>
                         </div>
                     </div>
@@ -49,6 +49,7 @@ const { user } = useFirebaseAuth();
 const router = useRouter();
 
 onBeforeMount(() => {
+    console.log("Cart contents: ", cart);
     onAuthStateChanged($auth as Auth, (firebaseUser) => {
         if(firebaseUser)
         {
