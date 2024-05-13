@@ -7,6 +7,10 @@
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <form @submit.prevent="submitCheckout">
                         <div class="mb-4">
+                            <div class="text-black pb-8 flex justify-between">
+                                <span>Total:</span>
+                                <span class="font-bold">${{ total }}</span>
+                            </div>
                             <div id="card-element" class="border border-gray-300 rounded p-4">
                             <!-- A Stripe Element will be inserted here. -->
                             </div>
