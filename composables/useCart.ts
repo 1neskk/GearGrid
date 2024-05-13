@@ -48,7 +48,7 @@ export const useCart = () => {
   };
 
   const total = computed(() => {
-    return cart.value.reduce((acc, product) => acc + product.price, 0);
+    return cart.value.reduce((acc, product) => acc + product.price, 0).toFixed(2);
   });
 
   onMounted(getCart);
