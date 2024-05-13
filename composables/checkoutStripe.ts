@@ -30,8 +30,8 @@ export const checkoutStripe = () => {
             },
         };
 
-        console.log('Client Secret:', clientSecret);
-        console.log('Payment Method Details:', safeStringify(paymentMethodDetails));
+        //console.log('Client Secret:', clientSecret);
+        //console.log('Payment Method Details:', safeStringify(paymentMethodDetails));
 
 
         try {
