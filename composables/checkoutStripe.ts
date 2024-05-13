@@ -13,7 +13,7 @@ export interface PaymentMethodDetails {
     };
 }
 
-export const checkout = () => {
+export const checkoutStripe = () => {
     const { clearCart } = useCart();
     const router = useRouter();
     
