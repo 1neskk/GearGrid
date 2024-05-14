@@ -9,7 +9,7 @@
                         <div class="mb-4">
                             <div class="text-black pb-8 flex justify-between">
                                 <span>Total:</span>
-                                <span class="font-bold">${{ total }}</span>
+                                <span class="font-bold">${{ total.toFixed(2) }}</span>
                             </div>
                             <div id="card-element" class="border border-gray-300 rounded p-4">
                             <!-- A Stripe Element will be inserted here. -->
@@ -28,21 +28,20 @@
 </template>
 
 <script lang="ts">
-import { ref, type Ref, onMounted, onBeforeMount } from 'vue';
+import { ref, type Ref, inject, onMounted, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCart } from '@/composables/useCart';
 import { onAuthStateChanged, type Auth } from 'firebase/auth';
 import { type Stripe, type StripeCardElement, type StripeElements } from '@stripe/stripe-js';
-import { checkoutStripe } from '@/composables/checkoutStripe';
-
-const { checkout } = checkoutStripe();
 
 export default {
     setup() {
         const router = useRouter();
-        const { $auth, $stripe } = useNuxtApp();
+        const { $auth } = useNuxtApp();
         const { user } = useFirebaseAuth();
         const { total } = useCart();
+
+        const stripe = inject<Stripe | undefined>('stripe');
         const cardElement: Ref<StripeCardElement | null> = ref(null);
 
         onBeforeMount(() => {
@@ -50,7 +49,6 @@ export default {
                 if(firebaseUser)
                 {
                     user.value = firebaseUser;
-                    useSonner.info('Checkout functionality is unavailable and it is under development/testing.');
                 }
                 else {
                     router.push('/login');
@@ -68,14 +66,15 @@ export default {
         });
 
         onMounted(async () => {
-            if (!$stripe) {
+            if (!stripe) {
                 useSonner.error('Error!', {
-                    description: 'Stripe is not initialized.',
+                    description: 'Stripe has not been initialized.',
                     duration: 2000,
                 });
                 return;
             }
-            const elements: StripeElements = ($stripe as Stripe).elements();
+            
+            const elements: StripeElements = stripe.elements();
             cardElement.value = elements.create('card', {
                 style: {
                     base: {
@@ -97,14 +96,70 @@ export default {
                 cardElement.value.mount('#card-element');
         });
         
-        // TODO: fix "Missing value for stripe.confirmCardPayment intent secret: value should be a client_secret string."
         const submitCheckout = async (): Promise<void> => {
-            if ($stripe as Stripe && cardElement.value) {
-                await checkout($stripe as Stripe);
-            }
-            else {
+            if (!stripe || !cardElement.value) {
                 useSonner.error('Error!', {
-                    description: 'Stripe is not initialized!',
+                    description: 'Stripe or Card Element not initialized.',
+                    duration: 2000,
+                });
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/payment-intent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: total.value * 100,
+                    }),
+                });
+
+                if (!response.ok) {
+                    const message = 'An error has occurred: ${response.status}';
+                    useSonner.error('Error!', {
+                        description: message,
+                        duration: 2000,
+                    });
+                    throw new Error(message);
+                }
+
+                const data = await response.json();
+                //console.log("Server response: ", data)
+
+                const clientSecret = data.client_secret;
+                if (!clientSecret) {
+                    useSonner.error('Error!', {
+                        description: 'Client secret not returned from server.',
+                        duration: 2000,
+                    });
+                    return;
+                }
+
+                const result = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: cardElement.value,
+                    },
+                });
+
+                if (result.error) {
+                    useSonner.error('Error!', {
+                        description: result.error.message,
+                        duration: 2000,
+                    });
+                } else {
+                    if (result.paymentIntent?.status === 'succeeded') {
+                        useSonner.success('Success!', {
+                            description: 'Payment succeeded.',
+                            duration: 2000,
+                        });
+                    }
+                }
+            }
+            catch (error) {
+                useSonner.error('Error!', {
+                    description: (error as Error).message,
                     duration: 2000,
                 });
             }

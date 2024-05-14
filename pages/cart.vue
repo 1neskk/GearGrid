@@ -28,7 +28,7 @@
                         <button @click="clearCart" class="bg-red-500 hover:bg-red-800 text-white px-4 py-2
                         rounded-lg">Clear Cart</button>
                         <div class="text-white">
-                            <p>Total: R$ {{ total }}</p>
+                            <p>Total: R$ {{ total.toFixed(2) }}</p>
                             <router-link to="/checkout" class="text-blue-500">Checkout</router-link>
                         </div>
                     </div>
