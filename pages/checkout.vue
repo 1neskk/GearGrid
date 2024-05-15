@@ -7,18 +7,16 @@
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <form @submit.prevent="submitCheckout">
                         <div class="mb-4">
-                            <div class="text-black pb-8 flex justify-between">
+                            <div class="text-black pb-4 flex justify-between">
                                 <span>Total:</span>
-                                <span class="font-bold">${{ total.toFixed(2) }}</span>
+                                <span class="font-bold">R$ {{ total.toFixed(2) }}</span>
                             </div>
                             <div id="card-element" class="border border-gray-300 rounded p-4">
                             <!-- A Stripe Element will be inserted here. -->
                             </div>
                         </div>
                         <div class="flex justify-end">
-                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
-                                Pay
-                            </button>
+                            <UiButton type="submit" color="primary" class="font-bold text-base">Pay</UiButton>
                         </div>
                     </form>
                 </div>
@@ -78,17 +76,18 @@ export default {
             cardElement.value = elements.create('card', {
                 style: {
                     base: {
-                        color: '#32325d',
-                        fontFamily: 'Arial, sans-serif',
+                        color: '#000',
+                        fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+                        fontWeight: '500',
                         fontSmoothing: 'antialiased',
                         fontSize: '16px',
                         '::placeholder': {
-                            color: '#aab7c4',
+                            color: '#909ba5',
                         },
                     },
                     invalid: {
-                        color: '#fa755a',
-                        iconColor: '#fa755a',
+                        color: '#fe8181',
+                        iconColor: '#fe8181',
                     },
                 },
             });
